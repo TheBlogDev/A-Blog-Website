@@ -10,6 +10,7 @@ import { useState } from "react";
 import Footer from "./components/Footer.tsx";
 import { useAuthContext } from "./hooks/useAuthContext.tsx";
 import Home from "./pages/Home.tsx";
+import ProtectedRoute from "./ProtectedRoute.tsx";
 
 function App() {
   const { user } = useAuthContext();
@@ -26,11 +27,9 @@ function App() {
             <Route
               path="/dashboard"
               element={
-                user ? (
+                <ProtectedRoute>
                   <Dashboard setShowModal={setShowModal} />
-                ) : (
-                  <Navigate to="/login" />
-                )
+                </ProtectedRoute>
               }
             />
             <Route

@@ -1,4 +1,10 @@
-import React, { createContext, useReducer, useEffect, type ReactNode } from "react";   
+import React, {
+  createContext,
+  useReducer,
+  useEffect,
+  useState,
+  type ReactNode,
+} from "react";
 
 interface User {
   email: string;
@@ -16,13 +22,18 @@ interface AuthAction {
 
 export const AuthContext = createContext<{
   user: User | null;
-  dispatch: React.Dispatch<AuthAction>
+  dispatch: React.Dispatch<AuthAction>;
+  authIsLoading: boolean;
 }>({
-  user : null, 
+  user: null,
   dispatch: () => {},
+  authIsLoading: false,
 });
 
-export const authReducer = (state: AuthState, action: AuthAction): AuthState => {
+export const authReducer = (
+  state: AuthState,
+  action: AuthAction
+): AuthState => {
   switch (action.type) {
     case "LOGIN":
       return { user: action.payload };
@@ -38,6 +49,8 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
     user: null,
   });
 
+  const [authIsLoading, setAuthIsLoading] = useState(true);
+
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     try {
@@ -48,12 +61,14 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
         dispatch({ type: "LOGIN", payload: user });
       }
     } catch (err) {
-      console.log("Failed to parse user from localStorage")
+      console.log("Failed to parse user from localStorage");
+    } finally {
+      setAuthIsLoading(false);
     }
   }, []);
 
   return (
-    <AuthContext.Provider value={{ ...state, dispatch }}>
+    <AuthContext.Provider value={{ ...state, dispatch, authIsLoading }}>
       {children}
     </AuthContext.Provider>
   );
