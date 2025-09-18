@@ -20,9 +20,9 @@ const Dashboard = ({ setShowModal }: DashboardProps) => {
   };
 
   const { user } = useAuthContext();
-  
+
   const authHeaders = useMemo(
-    () => user ? { Authorization: `Bearer ${user.token}` } : undefined,
+    () => (user ? { Authorization: `Bearer ${user.token}` } : undefined),
     [user?.token]
   );
 
@@ -31,18 +31,9 @@ const Dashboard = ({ setShowModal }: DashboardProps) => {
     authHeaders
   );
 
-  const { } = useFetch(
-    user ? "https://gentle-plateau-25780.herokuapp.com/api/blogpost" : "",
-  );
-
-  //   const handleDelete = (id) => {
-  //     const newBlogs = blogs.filter((blog) => blog.id !== id);
-  //     setBlogs(newBlogs);
-  //   };
-
   useEffect(() => {
     if (data) {
-      dispatch({ type: 'SET_BLOGPOSTS', payload: data });
+      dispatch({ type: "SET_BLOGPOSTS", payload: data });
     }
   }, [data, dispatch]);
 
@@ -53,18 +44,18 @@ const Dashboard = ({ setShowModal }: DashboardProps) => {
         {isPending && <Shimmer />}
         {blogposts &&
           blogposts?.map((blogpost: Blogpost) => {
-             const { title, author, createdAt, _id } = blogpost;
-             return (
-               <BlogDetails
-               key={_id}
-               title={title}
-               author={author}
-               createdAt={createdAt}
-               blogpost={blogpost}
-               setShowModal={setShowModal}
-               />
-              );
-              })}
+            const { title, author, createdAt, _id } = blogpost;
+            return (
+              <BlogDetails
+                key={_id}
+                title={title}
+                author={author}
+                createdAt={createdAt}
+                blogpost={blogpost}
+                setShowModal={setShowModal}
+              />
+            );
+          })}
       </Container>
       <BlogpostForm />
     </Container>
