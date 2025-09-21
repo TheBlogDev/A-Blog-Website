@@ -18,20 +18,17 @@ const Home = ({ setShowModal }: HomeProps) => {
     dispatch: React.Dispatch<any>;
   };
 
-  const headers = useMemo(
-  () => {
+  const headers = useMemo(() => {
     const token = localStorage.getItem("token") || "";
     return { Authorization: `Bearer ${token}` };
-  },
-  []
-   );
-  
+  }, []);
+
   const fetchUrl = "https://gentle-plateau-25780.herokuapp.com/api/blogpost";
   const { isPending, error, data } = useFetch(fetchUrl, headers);
 
   useEffect(() => {
     if (data) {
-      dispatch({ type: "GET_BLOGPOSTS", payload: data });
+      dispatch({ type: "SET_BLOGPOSTS", payload: data });
     }
   }, [data, dispatch]);
 

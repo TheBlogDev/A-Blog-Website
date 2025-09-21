@@ -29,6 +29,8 @@ const BlogDetails = ({ blogpost }: BlogPostProps) => {
   const { user } = useAuthContext();
   const { dispatch } = useBlogpostsContext();
 
+  // to come back to
+  // we already have blogpost as a prop to this component so we don't need to fetch it again to display it
   const detailsBlogPost = async () => {
     if (!user) {
       return;
