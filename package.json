@@ -5,8 +5,8 @@
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
-    "@mui/icons-material": "^7.0.2",
-    "@mui/material": "^7.0.2",
+    "@mui/material": "^7.1.0",
+    "@mui/icons-material": "^7.1.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.2.0",
     "@testing-library/user-event": "^14.6.1",
@@ -14,8 +14,8 @@
     "framer-motion": "^12.18.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-router-dom": "^7.5.2",
-    "web-vitals": "^4.2.4"
+    "web-vitals": "^5.0.1"
+    "react-router-dom": "^7.6.1",
   },
   "scripts": {
     "start": "vite",
@@ -44,15 +44,15 @@
     ]
   },
   "devDependencies": {
-    "@types/react": "^19.1.2",
-    "@types/react-dom": "^19.1.2",
+    "@types/react-dom": "^19.1.5",
+    "@types/react": "^19.1.5",
     "@vitejs/plugin-react": "^4.4.0",
     "@vitejs/plugin-react-swc": "^3.8.0",
-    "@vitest/coverage-v8": "^3.0.8",
+    "@vitest/coverage-v8": "^3.1.4",
     "http-proxy": "^1.18.1",
     "jsdom": "^26.0.0",
     "typescript": "^5.8.2",
-    "typescript-eslint": "^8.30.1",
+    "typescript-eslint": "^8.34.1",
     "vite": "^6.3.4",
     "vite-plugin-svgr": "^4.3.0",
     "vite-tsconfig-paths": "^5.1.4",
