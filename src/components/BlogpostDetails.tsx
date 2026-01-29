@@ -1,6 +1,4 @@
 import { useBlogpostsContext } from "../hooks/useBlogpostsContext";
-import { useMemo } from "react";
-import useFetch from "../useFetch.ts";
 import { Button, Typography } from "@mui/material";
 import RemoveIcon from "@mui/icons-material/Remove";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
@@ -9,7 +7,6 @@ import { useAuthContext } from "../hooks/useAuthContext";
 
 // date fns
 import { formatDistanceToNow } from "date-fns";
-import Loader from "./Loader";
 
 export interface Blogpost {
   _id: string;
@@ -27,16 +24,13 @@ interface BlogPostProps {
   setShowModal: (value: boolean) => void;
 }
 
-const BlogDetails = ({ blogpost }: BlogPostProps ) => {
+const BlogDetails = ({ blogpost }: BlogPostProps) => {
   const { title, author, createdAt } = blogpost;
   const { user } = useAuthContext();
   const { dispatch } = useBlogpostsContext();
-  const headers = useMemo(() => {
-    return user?.token ? { Authorization: `Bearer ${user.token}` } : {};
-  }, [user?.token]);
-  const fetchUrl = "https://gentle-plateau-25780.herokuapp.com/api/blogpost/";
-  const { data: blog, error, isPending } = useFetch(fetchUrl, headers);
 
+  // to come back to
+  // we already have blogpost as a prop to this component so we don't need to fetch it again to display it
   const detailsBlogPost = async () => {
     if (!user) {
       return;
@@ -82,19 +76,13 @@ const BlogDetails = ({ blogpost }: BlogPostProps ) => {
       animate={{ opacity: 1 }}
       transition={{ delay: 0.2 }}
     >
-      {isPending && (
-        <div>
-          <Loader />
-        </div>
-      )}
-      {error && <div>{error}</div>}
-      {blog && (
+      {blogpost && (
         <article>
           <Typography variant="h3" align="left">
             {title}
           </Typography>
           <Typography variant="subtitle1">
-            <strong>Written by {author.email}</strong>
+            <strong>Written by {author?.email}</strong>
           </Typography>
           <Typography variant="subtitle2">
             {formatDistanceToNow(new Date(createdAt), {
