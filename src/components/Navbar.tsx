@@ -153,8 +153,8 @@ const Navbar = () => {
               <Link to="/subscribe">Subscribe</Link>
             </span>
           )}
-          <Link to="/subscribe">Faq</Link>
-          <Link to="/subscribe">Contact</Link>
+          <Link to="/faq">Faq</Link>
+          <Link to="/contact">Contact</Link>
         </motion.div>
       </Box>
       {isMobileOrTablet && !isSideBarVisible && (

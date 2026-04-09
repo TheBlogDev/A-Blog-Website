@@ -43,6 +43,7 @@ export default function App() {
             />
             <Route path="/" element={<Home setShowModal={setShowModal} />} />
             <Route path="*" element={<NotFound />} />
+            
           </Routes>
         </div>
       </AnimatePresence>
