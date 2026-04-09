@@ -92,7 +92,7 @@ const BlogDetails = ({ blogpost }: BlogPostProps ) => {
             {title}
           </Typography>
           <Typography variant="subtitle1">
-            <strong>Writtens by {author?.email}</strong> 
+            <strong>Written by {author?.email}</strong> 
           </Typography>
           <Typography variant="subtitle2">
             {formatDistanceToNow(new Date(createdAt), {
