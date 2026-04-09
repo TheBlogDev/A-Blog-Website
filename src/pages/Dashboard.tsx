@@ -7,7 +7,6 @@ import { useAuthContext } from "../hooks/useAuthContext.tsx";
 import BlogDetails, { Blogpost } from "../components/BlogpostDetails.tsx";
 import BlogpostForm from "../components/BlogpostForm.tsx";
 import { Container } from "@mui/material";
-import Shimmer from "../components/Shimmer.tsx";
 
 interface DashboardProps {
   setShowModal: (value: boolean) => void;
@@ -26,7 +25,7 @@ const Dashboard = ({ setShowModal }: DashboardProps) => {
     [user?.token]
   );
 
-  const { data, isPending, error } = useFetch(
+  const { data, error } = useFetch(
     user ? "https://gentle-plateau-25780.herokuapp.com/api/blogpost" : "",
     authHeaders
   );
@@ -50,7 +49,6 @@ const Dashboard = ({ setShowModal }: DashboardProps) => {
     <Container className="home">
       <Container className="blogposts">
         {error && <div>{error}</div>}
-        {isPending && <Shimmer />}
         {blogposts &&
           blogposts?.map((blogpost: Blogpost) => {
              const { title, author, createdAt, _id } = blogpost;

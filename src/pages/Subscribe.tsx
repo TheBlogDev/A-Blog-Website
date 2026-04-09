@@ -1,7 +1,7 @@
 import { FormEvent, useState } from "react";
 import { useSubscribe } from "../hooks/useSubscribe.tsx";
 
-const Subscribe = () => {
+export default function Subscribe() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const { subscribe, error, isLoading } = useSubscribe();
@@ -49,5 +49,3 @@ const Subscribe = () => {
     </form>
   );
 };
-
-export default Subscribe;

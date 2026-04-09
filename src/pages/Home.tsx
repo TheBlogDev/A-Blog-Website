@@ -5,14 +5,13 @@ import { useBlogpostsContext } from "../hooks/useBlogpostsContext";
 // components
 import BlogDetails, { type Blogpost } from "../components/BlogpostDetails";
 import { Container } from "@mui/material";
-import Shimmer from "../components/Shimmer";
 import HeroSection from "../components/HeroSection.tsx";
 
 interface HomeProps {
   setShowModal: (value: boolean) => void;
 }
 
-const Home = ({ setShowModal }: HomeProps) => {
+export default function Home({ setShowModal }: HomeProps) {
   const { blogposts, dispatch } = useBlogpostsContext() as {
     blogposts: Blogpost[] | null;
     dispatch: React.Dispatch<any>;
@@ -27,7 +26,7 @@ const Home = ({ setShowModal }: HomeProps) => {
    );
   
   const fetchUrl = "https://gentle-plateau-25780.herokuapp.com/api/blogpost";
-  const { isPending, error, data } = useFetch(fetchUrl, headers);
+  const { error, data } = useFetch(fetchUrl, headers);
 
   useEffect(() => {
     if (data) {
@@ -42,7 +41,6 @@ const Home = ({ setShowModal }: HomeProps) => {
       </Container>
       <Container className="blogposts">
         {error && <div>{error}</div>}
-        {isPending && <Shimmer />}
         {blogposts &&
           blogposts
           .slice(0, 3) 
@@ -64,5 +62,3 @@ const Home = ({ setShowModal }: HomeProps) => {
     </Container>
   );
 };
-
-export default Home;

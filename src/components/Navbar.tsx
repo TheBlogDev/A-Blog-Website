@@ -91,14 +91,14 @@ const Navbar = () => {
       <div
         style={{ display: "flex", alignItems: "center", paddingRight: "1rem" }}
       >
-        <motion.div variants={imgVariant} initial="hidden" animate="visible">
+        <motion.ul variants={imgVariant} initial="hidden" animate="visible">
         <Link to="/">
           <Avatar
             id="avatar"
             alt="Logo of Coffee Cup"
           ><EmojiFoodBeverageIcon fontSize="large"/></Avatar>
         </Link>
-        </motion.div>
+        </motion.ul>
         <motion.div
           variants={leftNavVariants}
           initial="hidden"
@@ -148,11 +148,13 @@ const Navbar = () => {
             </Container>
           )}
           {!user && (
-            <>
+            <span>
               <Link to="/login">Login</Link>
               <Link to="/subscribe">Subscribe</Link>
-            </>
+            </span>
           )}
+          <Link to="/faq">Faq</Link>
+          <Link to="/contact">Contact</Link>
         </motion.div>
       </Box>
       {isMobileOrTablet && !isSideBarVisible && (

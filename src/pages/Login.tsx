@@ -1,7 +1,7 @@
 import { FormEvent, useState } from "react";
 import { useLogin } from "../hooks/useLogin";
 
-const Login = () => {
+export default function Login() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const { login, error, isLoading } = useLogin();
@@ -38,5 +38,3 @@ const Login = () => {
     </form>
   );
 };
-
-export default Login;
