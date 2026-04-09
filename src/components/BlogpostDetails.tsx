@@ -14,17 +14,15 @@ import Loader from "./Loader";
 export interface Blogpost {
   _id: string;
   title: string;
-  author: { _id: string; email: string };
+  author?: { _id: string; email: string };
   blogpost: string;
   createdAt: string;
 }
 
+
 interface BlogPostProps {
-  title: string;
-  author: { _id: string; email: string };
-  createdAt: string;
   blogpost: Blogpost;
-  setShowModal: (value: boolean) => void;
+  setShowModal?: (value: boolean) => void;
 }
 
 const BlogDetails = ({ blogpost }: BlogPostProps ) => {
@@ -94,7 +92,7 @@ const BlogDetails = ({ blogpost }: BlogPostProps ) => {
             {title}
           </Typography>
           <Typography variant="subtitle1">
-            {/* <strong>Written by {author.email}</strong> */}
+            <strong>Written by {author?.email}</strong> 
           </Typography>
           <Typography variant="subtitle2">
             {formatDistanceToNow(new Date(createdAt), {
