@@ -44,7 +44,10 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
 
       const user = storedUser ? JSON.parse(storedUser) : null;
       
-      if (user && typeof user.email === "string") {
+      if (user && 
+        typeof user.email === "string" &&
+        typeof user.token === "string"
+      ) {
         dispatch({ type: "LOGIN", payload: user });
       }
     } catch (err) {

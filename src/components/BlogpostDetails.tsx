@@ -40,7 +40,7 @@ const BlogDetails = ({ blogpost }: BlogPostProps ) => {
       return;
     }
     const response = await fetch(
-      "https://gentle-plateau-25780.herokuapp.com/api/blogposts/" +
+      "https://gentle-plateau-25780.herokuapp.com/api/blogpost/" +
         blogpost._id,
       {
         method: "GET",
@@ -55,11 +55,15 @@ const BlogDetails = ({ blogpost }: BlogPostProps ) => {
   };
 
   const deleteBlogPost = async () => {
+    console.log("delete blogpost");
+    console.log("Auth User", user);
+    console.log("Token", user?.token);
+    
     if (!user) {
       return;
     }
     const response = await fetch(
-      "https://gentle-plateau-25780.herokuapp.com/api/blogposts/" +
+      "https://gentle-plateau-25780.herokuapp.com/api/blogpost/" +
         blogpost._id,
       {
         method: "DELETE",
